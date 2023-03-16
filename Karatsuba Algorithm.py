@@ -1,8 +1,11 @@
 import time, random 
 
+cases = [4,8,64]
+iter = 0
 
-cases = [4,16,64]
 def multiply(x,y,n):
+    global iter
+    iter = iter + 1
     if n == 1:
         return x*y
     else:
@@ -46,21 +49,40 @@ def generate_random_number(n):
     # Generate a random integer with n bits
     return random.randint(2**(n-1), 2**n-1)
 
+def base_multiply(x,y,i=0):
+
+    res = x%10
+    div = x//10
+    if div == 0:
+        return res*y*10**i
+    else:
+        return res*y*10**i + base_multiply(div,y,i+1)
+    
+    
+   
+
 
 def main():
+    global iter
     for case in cases:
+        iter = 0
         x = generate_random_number(case)
         y = generate_random_number(case)
         start = time.perf_counter()
         print ("\nMultiplication of 2 numbers using Karatsuba's algorithm for", case, "bits: " , multiply(x,y,case))
         end = time.perf_counter()
         print ("Time taken:", end - start)
-        print ("Base multiplication of 2 numbers for", case, "bits: " , x*y)
+        print("Number of iterations:", iter)
+
+        print ("Base multiplication of 2 numbers for", case, "bits: " , base_multiply(x,y))
         print ("Time taken:", time.perf_counter() - end)
+
         start = time.perf_counter()
         print ("Multiplication of 2 numbers using Karatsuba's algorithm with memoization for", case, "bits: " , multiply_memoization(x,y,case,{}))
         end = time.perf_counter()
         print ("Time taken:", end - start)
+
+        
     
 if __name__ == "__main__":
     main()

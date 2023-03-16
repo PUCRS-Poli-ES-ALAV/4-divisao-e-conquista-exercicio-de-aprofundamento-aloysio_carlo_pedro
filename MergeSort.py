@@ -9,7 +9,7 @@ def mergeSort(list: list[int]) -> list[int]:
         return list
     listA = mergeSort(list[:len(list)//2])
     listB = mergeSort(list[len(list)//2:])
-    list = merge(listA, listB)
+    list = merge2(listA, listB)
     return list
 
 def merge(list1: list[int], list2: list[int]) -> list[int]:
@@ -33,10 +33,12 @@ def merge(list1: list[int], list2: list[int]) -> list[int]:
 
 
 def merge2(lst1: list[int], lst2: list[int]) -> list[int]:
+    global iter
     i = 0
     j = 0
     lst = []
     while i < len(lst1) and j < len(lst2):
+        iter = iter + 1
        
         if lst1[i] < lst2[j]:
             lst.append(lst1[i])
