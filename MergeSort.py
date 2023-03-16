@@ -31,6 +31,25 @@ def merge(list1: list[int], list2: list[int]) -> list[int]:
         list = list + list2
     return list
 
+
+def merge2(lst1: list[int], lst2: list[int]) -> list[int]:
+    i = 0
+    j = 0
+    lst = []
+    while i < len(lst1) and j < len(lst2):
+       
+        if lst1[i] < lst2[j]:
+            lst.append(lst1[i])
+            i += 1
+        else:
+            lst.append(lst2[j])
+            j += 1
+    if i < len(lst1):
+        lst.extend(lst1[i:])
+    if j < len(lst2):
+        lst.extend(lst2[j:])
+    return lst
+
 def randomList(n):
     list = []
     for _ in range(n):
@@ -42,13 +61,13 @@ def main():
     for case in cases:
         iter = 0
         print("\nCase:", case)
-        ls_start = time.time()
+        ls_start = time.perf_counter()
         list = randomList(case)
-        print("List initialization time:",time.time() - ls_start,"seconds")
+        print("List initialization time:",time.perf_counter() - ls_start,"seconds")
         
-        alg_start = time.time()
+        alg_start = time.perf_counter()
         list = mergeSort(list)
-        print("Algorithm execution time:",time.time() - alg_start,"seconds")
+        print("Algorithm execution time:",time.perf_counter() - alg_start,"seconds")
         
         print("Number of iterations:", iter)
     

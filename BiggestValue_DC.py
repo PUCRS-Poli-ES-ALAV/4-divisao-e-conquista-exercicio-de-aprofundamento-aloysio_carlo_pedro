@@ -25,16 +25,16 @@ def main():
     global num_it
     for case in cases:
         print("\nCase:", case)
-        ls_start = time.time()
+        ls_start = time.perf_counter()
         list = randomList(case)
-        print("List initialization time:",time.time() - ls_start)
+        print("List initialization time:",time.perf_counter() - ls_start)
         
-        alg_start = time.time()
+        alg_start = time.perf_counter()
         num_it = 0
         value = maxValueDC(list)
         print("Value :",value)
         print ("Number of Iterations: ", num_it)
-        print("Algorithm execution time:",time.time() - alg_start)
+        print("Algorithm execution time:",time.perf_counter() - alg_start)
     
 if __name__ == "__main__":
     main()

@@ -24,13 +24,13 @@ def main():
     for case in cases:
         iter = 0
         print("\nCase:", case)
-        ls_start = time.time()
+        ls_start = time.perf_counter()
         list = randomList(case)
-        print("List initialization time:",time.time() - ls_start,"seconds")
+        print("List initialization time:",time.perf_counter() - ls_start,"seconds")
         
-        alg_start = time.time()
+        alg_start = time.perf_counter()
         list = biggestValue(list)
-        print("Algorithm execution time:",time.time() - alg_start,"seconds")
+        print("Algorithm execution time:",time.perf_counter() - alg_start,"seconds")
         
         print("Number of iterations:", iter)
     
